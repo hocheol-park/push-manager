@@ -1,0 +1,21 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 21
+    buildToolsVersion "21.1.2"
+
+    defaultConfig {
+        applicationId "com.whoopersoft.pushmanager"
+        minSdkVersion 8
+        targetSdkVersion 21
+        versionCode 1
+        versionName "1.0" 
+    }
+}
+
+dependencies {
+    compile 'com.android.support:appcompat-v7:22.1.1'
+    compile 'com.squareup.okhttp:okhttp:2.4.0'
+    compile 'org.java-websocket:Java-WebSocket:1.3.0'
+    compile files('libs/gcm.jar')
+}
