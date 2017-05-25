@@ -28,7 +28,7 @@ public class MainActivity extends Activity implements OnClickListener {
 
     String name, screenName, deviceToken;
 
-    public static final String LOOKUP_HOST = "http://125.209.198.188:8088/lookup";
+    public static final String LOOKUP_HOST = "";	// Have to set Lookup host here
     public String type = "user";
 
     @Override

@@ -62,7 +62,7 @@
 | 타입       |           | 설명                 |
 | --------- |:---------:| ------------------: |
 | TYPE_USER | user      | 유저에게 개인 메시지 전송 | 
-| TYPE_USER | channel   | 채널에 전체메시지 전송    |
+| TYPE_CH   | channel   | 채널에 전체메시지 전송    |
 
 
 ## 라이브러리 사용 방법
@@ -121,4 +121,21 @@
 
 4. WebSocketEvent 
 
+| 메서드       | 설명                 |
+| ---------  | ------------------: |
+| void setEventListener(WebSocketEventListener listener) | WebSocket 통신 작업중 값 전달을 위해 필요한 listener 를 등록합니다. listener : WebSocketEventListener 에 대한 설명은 5) WebSocketEventListener 클래스 설명 을 참. | 
+| boolean isAgreedPush() | 푸쉬 설정 동의 여부를 반환합니다 | 
+| void setPushAgree() | 푸쉬 동의 설정을 합니다. GCM 서버와 통신하며 이에 대한 성공, 실패 여부는 WebSocketEventListener의onPushAgreed, onPushAgreeError 로 구분합니다 | 
+| boolean isRegistered() | 사용자 등록 여부를 반환합니다. | 
+| void register(String name, String screenName) | 사용자 등록을 처리합니다. name : 유저 네임 / screenName : 유저 스크린 네임 | 
+| void setLookup(String lookupHost) | Lookup 서버 호스트를 설정합니다. lookupHost : 웹소켓 서버에 접속하기 위해서 서버 정보를 받아오는 lookup 서버 호스트 | 
+| void connect() | 웹소켓 서버에 접속합니다. 접속 시도에 대한 성공 실패 여부는 WebSocketEventListener의 onSocketConnected, onSocketDisconnected 로 구분합니다. lookup 서버에 Http 통신하여 받아온 리스트에 랜덤으로 접속합니다. | 
+| void disconnect() | 웹소켓 서버와 연결을 해지합니다. | 
+| void reconnect() | 웹소켓 서버에 재접속합니다. 이미 접속 상태이면 접속 중인 소켓을 끊고 새로운 접속을 시도하며 접속 상태가 아니면 바로 새로운 접속을 시도합니다. | 
+| void sendMessage(String type, String recipient, String msg) | 메세지를 전송합니다. 메세지 전송의 성공 여부는 WebSocketEventListener의 onSendMessage, onSendFail 로 구분합니다. type : 받는 사람 타입 (user or channel) / recipient : 받는 사람 / msg : 전송할 메세지 | 
+
 5. WebSocketEventListener
+
+| 타입       |           | 설명                 |
+| --------- |:---------:| ------------------: |
+| TYPE_USER | user      | 유저에게 개인 메시지 전송 | 
