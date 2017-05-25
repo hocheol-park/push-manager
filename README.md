@@ -133,9 +133,27 @@
 | void disconnect() | 웹소켓 서버와 연결을 해지합니다. | 
 | void reconnect() | 웹소켓 서버에 재접속합니다. 이미 접속 상태이면 접속 중인 소켓을 끊고 새로운 접속을 시도하며 접속 상태가 아니면 바로 새로운 접속을 시도합니다. | 
 | void sendMessage(String type, String recipient, String msg) | 메세지를 전송합니다. 메세지 전송의 성공 여부는 WebSocketEventListener의 onSendMessage, onSendFail 로 구분합니다. type : 받는 사람 타입 (user or channel) / recipient : 받는 사람 / msg : 전송할 메세지 | 
+| void sendMessage(String type, String recipient, String msg, HashMap<String, String> customParams) | 메세지를 전송합니다. 메세지 전송의 성공 여부는 WebSocketEventListener의 onSendMessage, onSendFail 로 구분합니다. type : 받는 사람 타입 (user or channel) / recipient : 받는 사람 / msg : 전송할 메세지 / customParams : 커스텀 인자 | 
+| void joinChannel(String channelName) | 그룹채팅방에 입장합니다. 입장 성공 실패 여부는 WebSocketEventListener의 onChannelJoin, onchaanelError 로 구분합니다. channelName : 채널 이름 | 
+| void leaveChannel(String channelName) | 그룹채팅방에서 퇴장합니다. 퇴장 성공 실패 여부는 WebSocketEventListener의 onChannelJoin, onchaanelError 로 구분합니다. channelName : 채널 이름 | 
 
 5. WebSocketEventListener
 
-| 타입       |           | 설명                 |
-| --------- |:---------:| ------------------: |
-| TYPE_USER | user      | 유저에게 개인 메시지 전송 | 
+| 메서드       | 설명                 |
+| ---------  | ------------------: |
+| void onPushAgreed() | 푸쉬 인증 성공 |
+| void onPushAgreeError(String reason) | 푸쉬 인증 실패 |
+| void onSocketConnected() | 소켓 연결 성공 |
+| void onSocketDisconnected() | 소켓 연결 해지 |
+| void onSocketError(String reason) | 소켓 연결 오류 |
+| void onGreeting(JSONObject json) | 최초 접속 인증 |
+| void onBye(JSONObject json) | 영구 접속 해지 |
+| void onSendSuccess(JSONObject json) | 메세지 전송 성공 |
+| void onSendFail(JSONObject json) | 메세지 전송 실패 |
+| void onReceiveSuccess(JSONObject json) | 받은 메세지 정보 |
+| void onChannelJoin(JSONObject json) | 그룹채팅방 입장 |
+| void onChannelLeave(JSONObject json) | 그룹채팅방 퇴장 |
+| void onChannelError(JSONObject json) | 그룹채팅 오류 | 
+| void onChannelMessage(JSONObject json) | 그룹채팅방 알림 메세지 |
+
+
